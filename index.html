@@ -285,14 +285,20 @@ function checkAuditTime(beginTime, endTime) {
 }
 function changColor(n1, n2){
   if(document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+n2+')').innerHTML.replace(/\s*/g,"") == ''){
-    document.querySelector('table tr:nth-child(2) td').innerHTML='》 当前是下课时间'
+    var flag = 'no'
+    document.querySelector('table tr:nth-child(2) td').innerHTML='》 1班当前是下课时间'
   } else {
     document.querySelector('table tr:nth-child(2) td').innerHTML = 
     '<div style="color: rgb(255 127 187)">》 1班进行中：'+document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+n2+')').innerText+'</div>'
     document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+n2+')').style.background = 'rgba(255, 127, 187, .8)'
   }
   if (document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+(n2+1)+')').innerHTML.replace(/\s*/g,"") == '') {
-    document.querySelector('table tr:nth-child(2) td').innerHTML='》 当前是下课时间'
+    if(flag == 'no') {
+      document.querySelector('table tr:nth-child(2) td').innerHTML='》 当前是下课时间'
+    }else {
+      document.querySelector('table tr:nth-child(2) td').innerHTML='》 2班当前是下课时间'
+      flag=''
+    }
   } else {
     document.querySelector('table tr:nth-child(2) td').innerHTML = 
     document.querySelector('table tr:nth-child(2) td').innerHTML+'<div style="color: rgb(234 170 0)">》 2班进行中：'+document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+(n2+1)+')').innerText+'</div>'
@@ -301,13 +307,19 @@ function changColor(n1, n2){
 }
 function changText(n1, n2){
   if(document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+n2+')').innerHTML.replace(/\s*/g,"") == ''){
-    document.querySelector('table tr:nth-child(2) td').innerHTML='》 当前是下课时间'
+    var flag = 'no'
+    document.querySelector('table tr:nth-child(2) td').innerHTML='》 1班当前是下课时间'
   } else {
     document.querySelector('table tr:nth-child(2) td').innerHTML = 
     '<div style="color: rgb(255 127 187)">》 1班即将开始：'+document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+n2+')').innerText+'</div>'
   }
   if (document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+(n2+1)+')').innerHTML.replace(/\s*/g,"") == '') {
-    document.querySelector('table tr:nth-child(2) td').innerHTML='》 当前是下课时间'
+    if(flag == 'no') {
+      document.querySelector('table tr:nth-child(2) td').innerHTML='》 当前是下课时间'
+    }else {
+      document.querySelector('table tr:nth-child(2) td').innerHTML='》 2班当前是下课时间'
+      flag=''
+    }
   } else {
     document.querySelector('table tr:nth-child(2) td').innerHTML = 
     document.querySelector('table tr:nth-child(2) td').innerHTML+'<div style="color: rgb(234 170 0)">》 2班即将开始：'+document.querySelector('table tr ~ tr:nth-child('+n1+') td:nth-child('+(n2+1)+')').innerText+'</div>'
@@ -324,6 +336,18 @@ if (checkAuditTime("8:00", "9:40")) {
     changColor(16, 3)
   } else if (thisDay == 5) {
     changColor(20, 3)
+  }
+}else if (checkAuditTime("9:45", "9:59")) {
+  if (thisDay == 1) {
+    changText(5, 2)
+  } else if (thisDay == 2) {
+    changText(9, 2)
+  } else if (thisDay == 3) {
+    changText(13, 2)
+  } else if (thisDay == 4) {
+    changText(17, 2)
+  } else if (thisDay == 5) {
+    changText(21, 2)
   }
 }else if (checkAuditTime("10:00", "11:40")) {
   if (thisDay == 1) {
@@ -348,6 +372,18 @@ if (checkAuditTime("8:00", "9:40")) {
     changColor(18, 2)
   } else if (thisDay == 5) {
     changColor(22, 2)
+  }
+}else if (checkAuditTime("16:15", "16:19")) {
+  if (thisDay == 1) {
+    changText(7, 2)
+  } else if (thisDay == 2) {
+    changText(11, 2)
+  } else if (thisDay == 3) {
+    changText(15, 2)
+  } else if (thisDay == 4) {
+    changText(19, 2)
+  } else if (thisDay == 5) {
+    changText(23, 2)
   }
 }else if (checkAuditTime("16:20", "18:00")) {
   if (thisDay == 1) {
